@@ -30,8 +30,8 @@ let run_miou () =
       Format.printf "awaiting all %d children [live_words=%d]\r\n%!"
         (child_count) (live_words ());
       Miou.await_all children |> ignore;
-      (* NOTE(leostera): it appears that even triggering a full major gc won't
-         clean up the children's memory. *)
+      Miou.yield ();
+      full_major ();
       full_major ();
       Format.printf "all %d children have returned [live_words=%d]\r\n%!"
         (child_count) (live_words ())
