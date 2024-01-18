@@ -1,4 +1,4 @@
-let live_words () = (Gc.stat ()).live_words
+let live_words () = (Gc.quick_stat ()).live_words
 
 let full_major () =
   let words_before = live_words () in
