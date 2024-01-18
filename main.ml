@@ -49,4 +49,8 @@ let () =
   Format.printf "before miou\r\n%!";
   run_miou ();
   full_major ();
-  (* NOTE(@leostera): this next line needs OCaml 5.2+trunk *)
+  (* NOTE(@leostera): this next line needs OCaml 5.2+trunk 
+     Gc.compact ()
+   *)
+  Format.printf "after miou [live_words=%d]\r\n%!" (live_words ());
+  Unix.sleep 100
